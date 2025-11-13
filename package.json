@@ -1,0 +1,36 @@
+{
+  "name": "doc-digital-api-automation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "apiTest": "npx cucumber-js --profile api --tags @API",
+    "revision": "npx cucumber-js --profile api --tags @Revision",
+    "auth": "npx cucumber-js --profile api --tags @Auth",
+    "comunicaciones": "npx cucumber-js --profile api --tags @Comunicaciones",
+    "post_despachar": "npx cucumber-js --profile api --tags @Despachar",
+    "entidades": "npx cucumber-js --profile api --tags @Entidades",
+    "tipos": "npx cucumber-js --profile api --tags @Tipos",
+    "api-report": "node src/reports/api/report-generator.js",
+    "debug": "cross-env CUCUMBER_DEBUG=1 npx cucumber-js --profile debug"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Automation framework - API Testing",
+  "devDependencies": {
+    "@cucumber/cucumber": "^11.2.0",
+    "@playwright/test": "^1.47.2",
+    "@types/node": "^22.15.19",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.5.0",
+    "multiple-cucumber-html-reporter": "^3.9.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.17.20",
+    "axios": "^1.8.4",
+    "form-data": "^4.0.0",
+    "lodash": "^4.17.21"
+  }
+}
