@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var report = require("multiple-cucumber-html-reporter");
 report.generate({
-    jsonDir: 'reports/html-report/cucumber-api', 
+    jsonDir: 'reports/cucumber-api', 
     reportPath: './reports',
     attachDisplayParameters: true,
     metadata:{
