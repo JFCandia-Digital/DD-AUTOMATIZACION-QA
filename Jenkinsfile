@@ -35,7 +35,7 @@ pipeline {
     stages {
         stage('Preparación') {
             steps {
-                withCredentials([string(credentialsId: 'env-doc-digital', variable: 'DOTENV_CONTENT')]) {
+                withCredentials([secretFile(credentialsId: 'env-doc-digital', variable: 'DOTENV_CONTENT')]) {
                     echo "Creando archivo .env..."
                     sh 'echo "$DOTENV_CONTENT" > .env.api'
                 }
