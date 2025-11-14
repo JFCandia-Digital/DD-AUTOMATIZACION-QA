@@ -5,9 +5,8 @@
     ],
     "require": [
       "src/hooks/hooks.ts",
-      "src/**/genericSteps/*.steps.ts",
-      "src/**/apiAuth/steps/*.steps.ts",
-      "src/**/apiComunicaciones/steps/*.steps.ts"
+      "src/api-test/**/steps/*.steps.ts",
+      "src/api-test/**/genericSteps/*.steps.ts"
     ],
     "requireModule": [
       "ts-node/register"
