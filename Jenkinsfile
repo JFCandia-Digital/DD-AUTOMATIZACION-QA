@@ -29,6 +29,7 @@ pipeline {
         booleanParam(name: 'TAG_DESPACHAR', defaultValue: false, description: 'Ejecutar tests de API Despachar (@Despachar)')
         booleanParam(name: 'TAG_ENTIDADES', defaultValue: false, description: 'Ejecutar tests de API Entidades (@Entidades)')
         booleanParam(name: 'TAG_TIPOS', defaultValue: false, description: 'Ejecutar tests de API Entidades (@Tipos)')
+        booleanParam(name: 'TAG_PENDIENTE_RECEPCION', defaultValue: false, description: 'Ejecutar tests de API Entidades (@PendientesRecepcion)')
         booleanParam(name: 'TAG_REGRESSION', defaultValue: false, description: 'Ejecutar todos los tests de Regresión (@API)')
     }
 
@@ -59,6 +60,7 @@ pipeline {
                     if (params.TAG_DESPACHAR) { selectedTags.add('@Despachar') }
                     if (params.TAG_ENTIDADES) { selectedTags.add('@Entidades') }
                     if (params.TAG_TIPOS) { selectedTags.add('@Tipos') }
+                    if (params.TAG_PENDIENTE_RECEPCION) { selectedTags.add('@PendientesRecepcion') }
                     if (params.TAG_REGRESSION) { selectedTags.add('@API') }
                     
                     def tagsArgument = ''
