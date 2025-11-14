@@ -4,13 +4,13 @@ def publishCucumberReport() {
     sh 'npm run api-report || true'
 
     echo "Publicando reporte HTML..."
-    def reportPath = 'reports/html-report/index.html'
+    def reportPath = 'reports/index.html'
     if (fileExists(reportPath)) {
         publishHTML(target: [
             allowMissing: false,
             alwaysLinkToLastBuild: true,
             keepAll: true,
-            reportDir: 'reports/html-report',
+            reportDir: 'reports',
             reportFiles: 'index.html',
             reportName: 'Reporte de Pruebas API'
         ])
@@ -43,8 +43,7 @@ pipeline {
                 sh 'npm install'
                 
                 echo "Eliminando carpeta de reportes antiguos."
-                sh 'rm -rf reports/html-report' 
-                sh 'rm -rf reports/json-acuse-recibo'
+                sh 'rm -rf reports'
             }
         }
 

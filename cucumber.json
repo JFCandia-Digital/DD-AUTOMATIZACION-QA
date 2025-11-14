@@ -18,11 +18,11 @@
     "format": [
       [
         "html",
-        "reports/html-report/cucumber-api/api-report.html"
+        "reports/cucumber-api/api-report.html"
       ],
       "summary",
       "progress-bar",
-      "json:reports/html-report/cucumber-api/cucumber-report.json"
+      "json:reports/cucumber-api/cucumber-report.json"
     ]
   },
   "debug": {
