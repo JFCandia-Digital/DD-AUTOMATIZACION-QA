@@ -135,6 +135,14 @@ export const successStructures = {
     "page": "number"
   },
 
+  "JSON_RESPONSE_PENDIENTES_RECEPCION_SIN_DATOS": {
+    ...baseResponse,
+    "result": [],
+    "total_count": "number",
+    "total_pages": "number",
+    "page": "number"
+  },
+
   "JSON_RESPONSE_ENTIDAD_TOKEN": {
     ...genericResponse
   },

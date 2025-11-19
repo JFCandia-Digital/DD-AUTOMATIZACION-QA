@@ -16,9 +16,16 @@ const JSON_MINIMO_VALIDO = {
       {
         "entidadDestinatariaCodificadorId": 27,
         "isEnCopia": false
+      },
+      {
+        "entidadDestinatariaCodificadorId": 522,
+        "isEnCopia": false
+      },
+      {
+        "entidadDestinatariaCodificadorId": 55,
+        "isEnCopia": false
       }
-    ],
-    "destinatariosReferenciados": []
+    ]
   },
   "materia": "AUT-materia-TEST",
   "idTipoDocumentoOficial": 1,
@@ -57,7 +64,7 @@ const SIN_ENTIDAD_DESTINATARIA_CODIFICADOR_ID_DESTINATARIOS_CONFIGURACION_DESTIN
 // Campo configuracionDestinatarios.destinatarios.0.isEnCopia
 const SIN_IS_EN_COPIA_DESTINATARIOS_CONFIGURACION_DESTINATARIOS = crearVarianteSinCampo(JSON_MINIMO_VALIDO, 'configuracionDestinatarios.destinatarios.0.isEnCopia');
 // Campo configuracionDestinatarios.destinatarios como array vacío
-const INFO_VACIO_DESTINATARIOS_CONFIGURACION_DESTINATARIOS = { ...JSON_MINIMO_VALIDO, "configuracionDestinatarios.destinatarios": [] };
+const INFO_VACIO_DESTINATARIOS_CONFIGURACION_DESTINATARIOS = { ...JSON_MINIMO_VALIDO, configuracionDestinatarios: {destinatarios: { } } };
 // Campo configuracionDestinatarios.destinatariosReferenciados
 const SIN_DESTINATARIOS_REFERENCIADOS_CONFIGURACION_DESTINATARIOS = crearVarianteSinCampo(JSON_MINIMO_VALIDO, 'configuracionDestinatarios.destinatariosReferenciados');
 // Campo configuracionDestinatarios.destinatariosReferenciados como array vacío
