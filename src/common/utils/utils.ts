@@ -36,6 +36,18 @@ export function getCredential(credential: string): string {
       return process.env.CLIENT_ID_CARABINEROS!;
     case 'CLIENT_SECRET_CARABINEROS':
       return process.env.CLIENT_SECRET_CARABINEROS!;
+    
+      // --- Credenciales SEGEPRES ---
+    case 'CLIENT_ID_SEGEPRES':
+      return process.env.CLIENT_ID_SEGEPRES!;
+    case 'CLIENT_SECRET_SEGEPRES':
+      return process.env.CLIENT_SECRET_SEGEPRES!;
+
+      // --- Credenciales CNE ---
+    case 'CLIENT_ID_CNE':
+      return process.env.CLIENT_ID_CNE!;
+    case 'CLIENT_SECRET_CNE':
+      return process.env.CLIENT_SECRET_CNE!;
 
     default:
       return credential;
