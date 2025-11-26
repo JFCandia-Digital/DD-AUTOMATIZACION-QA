@@ -42,11 +42,12 @@ const baseBusqueda = {
   "id": "number",
   "nombre": "string",
   "isPrincipal": "boolean",
-  "entidadDependenciaId": "number",
-  "entidadDependenciaCodificadorId": "number",
-  "entidadDependenciaNombre": "string",
+  "entidadDependenciaId?": "number",
+  "entidadDependenciaCodificadorId?": "number",
+  "entidadDependenciaNombre?": "string",
   "sigla": "string",
-  "isActiva": "boolean"
+  "isActiva": "boolean",
+  "entidadCodificadorId?": "number"
 };
 
 const baseInfoCreador = {
@@ -332,7 +333,15 @@ export const successStructures = {
     "page": "number"
   },
 
-  "JSON_RESPONSE_USUARIOS_ENTIDAD": {
+  "JSON_RESPONSE_ENTIDADES": {
+    ...baseResponse,
+    "result": [baseBusqueda],
+    "total_count": "number",
+    "total_pages": "number",
+    "page": "number"
+  },
+
+  "JSON_RESPONSE_USUARIOS": {
   ...baseResponse,
   "result": [baseUsuarioEntidad],
   "total_count": "number",
