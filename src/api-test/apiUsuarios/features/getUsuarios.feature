@@ -4,7 +4,7 @@ Feature: Pruebas realizadas a la API "GET" - "/usuarios/"
 # == Pruebas para método GET /comunicaciones/buscar-entrantes
 # =================================================================================
 
-  @Revision
+  
   Scenario: Enviar petición "GET" - "/usuarios/" con datos válidos
     Given que solicito un token de acceso con el usuario "CLIENT_ID_PDI" y el password "CLIENT_SECRET_PDI"
     And que realizo una petición "GET" a "/usuarios/" con token "válido"

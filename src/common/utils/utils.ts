@@ -65,21 +65,38 @@ export function validateStructure(actual: any, expected: any, path: string) {
 
   if (Array.isArray(expected)) {
     expect(Array.isArray(actual), `La propiedad '${path}' debería ser un array.`).toBe(true);
-    const expectedNode = expected[0];
-    // Validamos la estructura de cada elemento en el array real
-    for (let i = 0; i < actual.length; i++) {
-      validateStructure(actual[i], expectedNode, `${path}[${i}]`);
+    
+
+    if (actual.length > 0 && expected.length > 0) {
+      const expectedNode = expected[0];
+
+      for (let i = 0; i < actual.length; i++) {
+        validateStructure(actual[i], expectedNode, `${path}[${i}]`);
+      }
     }
     return;
   }
 
-
   if (typeof expected === 'object' && expected !== null) {
     for (const key in expected) {
-      const currentPath = path ? `${path}.${key}` : key;
-      expect(actual, `Al objeto en la ruta '${path}' le falta la propiedad '${key}'.`).toHaveProperty(key);
+      let isOptional = false;
+      let actualKey = key;
+
+      if (key.endsWith('?')) {
+        isOptional = true;
+        actualKey = key.slice(0, -1);
+      }
+
+      const currentPath = path ? `${path}.${actualKey}` : actualKey;
+      if (isOptional && !Object.prototype.hasOwnProperty.call(actual, actualKey)) {
+        continue;
+      }
+
+      expect(actual, `Al objeto en la ruta '${path}' le falta la propiedad '${actualKey}'.`).toHaveProperty(actualKey);
+      
       const expectedValue = expected[key];
-      const actualValue = actual[key];
+      const actualValue = actual[actualKey];
+
       validateStructure(actualValue, expectedValue, currentPath);
     }
     return;

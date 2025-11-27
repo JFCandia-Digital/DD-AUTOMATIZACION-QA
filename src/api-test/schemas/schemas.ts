@@ -45,6 +45,7 @@ const baseBusqueda = {
   "entidadDependenciaId": "number",
   "entidadDependenciaCodificadorId": "number",
   "entidadDependenciaNombre": "string",
+  "entidadCodificadorId?": "number",
   "sigla": "string",
   "isActiva": "boolean"
 };
@@ -338,5 +339,13 @@ export const successStructures = {
   "total_count": "number",
   "total_pages": "number",
   "page": "number"
-}
+},
+
+"JSON_RESPONSE_ENTIDADES": {
+    ...baseResponse,
+    "result": [baseBusqueda],
+    "total_count": "number",
+    "total_pages": "number",
+    "page": "number"
+  },
 };
