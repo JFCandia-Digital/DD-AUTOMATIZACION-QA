@@ -1,4 +1,4 @@
-@API @Entidades @GetPadreFamilia
+@API @Entidades @GetPadreFamilia @Revision
 Feature: Pruebas realizadas a la API "GET" - "/entidades/padre-familia/:entidadCodificadorId"
 # =================================================================================
 # == Pruebas para método GET /entidades/padre-familia/:entidadCodificadorId

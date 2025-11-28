@@ -1,4 +1,4 @@
-@API @Comunicaciones @Despachar
+@API @Comunicaciones @Despachar @Revision
 Feature: Pruebas realizadas a la API "POST" - "/comunicaciones/despachar"
 
 # =================================================================================

@@ -1,4 +1,4 @@
-@API @Comunicaciones @BuscarSalientes
+@API @Comunicaciones @BuscarSalientes @Revision
 Feature: Pruebas realizadas a la API "GET" - "/comunicaciones/buscar-salientes"
 # =================================================================================
 # == Pruebas para método GET /comunicaciones/buscar-salientes

@@ -1,4 +1,4 @@
-@API @Tipos @GetTipoDocumento @Revision
+@API @Tipos @GetTipoDocumento
 Feature: Pruebas realizadas a la API "GET" - "/tipo/documento"
 # =================================================================================
 # == Pruebas para método GET /tipo/documento

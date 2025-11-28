@@ -1,4 +1,4 @@
-@API @Tipos @GetRole @Revision
+@API @Tipos @GetRole
 Feature: Pruebas realizadas a la API "GET" - "/tipo/role"
 # =================================================================================
 # == Pruebas para método GET /tipo/role

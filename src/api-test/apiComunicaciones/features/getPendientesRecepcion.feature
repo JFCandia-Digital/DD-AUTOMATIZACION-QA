@@ -1,4 +1,4 @@
-@API @Comunicaciones @PendientesRecepcion
+@API @Comunicaciones @PendientesRecepcion @Revision
 Feature: Pruebas realizadas a la API "GET" - "/comunicaciones/pendientes-recepcion"
 # =================================================================================
 # == Pruebas para método GET /comunicaciones/pendientes-recepcion

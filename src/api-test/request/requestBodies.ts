@@ -36,6 +36,29 @@ const JSON_MINIMO_VALIDO = {
   }
 };
 
+const JSON_SIN_MATERIA = crearVarianteSinCampo(JSON_MINIMO_VALIDO, 'materia');
+
+const JSON_MINIMO_VALIDO_REGISTRO_EXTERNO = { 
+  ...JSON_SIN_MATERIA,
+  "materia": "AUT-materia-TEST-REGISTRO-EXTERNO" ,
+  "fechaHoraDespachoExterno": null, 
+  "plataformaDespachoExterno": 598 
+}
+
+const JSON_VALIDO_REGISTRO_EXTERNO_CON_ANEXOS = { 
+  ...JSON_MINIMO_VALIDO_REGISTRO_EXTERNO, 
+  "archivosAnexosInfo": [
+    {
+      "fileName": "MINVU.pdf",
+      "isReservado": false
+    }
+  ]
+}
+
+const JSON_VALIDO_REGISTRO_EXTERNO_CON_ANEXOS_VACIOS = { 
+  ...JSON_MINIMO_VALIDO_REGISTRO_EXTERNO, 
+  "archivosAnexosInfo": []
+}
 // --- 2. ESTRUCTURA "HAPPY PATH" COMPLETA ---
 const JSON_CON_ARCHIVOS_ANEXOS = {
   ...JSON_MINIMO_VALIDO,
@@ -64,7 +87,7 @@ const SIN_ENTIDAD_DESTINATARIA_CODIFICADOR_ID_DESTINATARIOS_CONFIGURACION_DESTIN
 // Campo configuracionDestinatarios.destinatarios.0.isEnCopia
 const SIN_IS_EN_COPIA_DESTINATARIOS_CONFIGURACION_DESTINATARIOS = crearVarianteSinCampo(JSON_MINIMO_VALIDO, 'configuracionDestinatarios.destinatarios.0.isEnCopia');
 // Campo configuracionDestinatarios.destinatarios como array vacío
-const INFO_VACIO_DESTINATARIOS_CONFIGURACION_DESTINATARIOS = { ...JSON_MINIMO_VALIDO, configuracionDestinatarios: {destinatarios: { } } };
+const INFO_VACIO_DESTINATARIOS_CONFIGURACION_DESTINATARIOS = { ...JSON_MINIMO_VALIDO, configuracionDestinatarios: { destinatarios: {} } };
 // Campo configuracionDestinatarios.destinatariosReferenciados
 //const SIN_DESTINATARIOS_REFERENCIADOS_CONFIGURACION_DESTINATARIOS = crearVarianteSinCampo(JSON_MINIMO_VALIDO, 'configuracionDestinatarios.destinatariosReferenciados');
 // Campo configuracionDestinatarios.destinatariosReferenciados como array vacío
@@ -475,7 +498,11 @@ const JSON_CON_ARCHIVOS_ANEXOS_FILENAME_LARGO = {
   "archivosAnexosInfo": [{ "fileName": "a".repeat(151) + ".pdf", "isReservado": false }]// Viola [3, 150]
 };
 
-
+export const registroExternoRequest = {
+  "JSON_MINIMO_VALIDO_REGISTRO_EXTERNO": JSON_MINIMO_VALIDO_REGISTRO_EXTERNO,
+  "JSON_VALIDO_REGISTRO_EXTERNO_CON_ANEXOS": JSON_VALIDO_REGISTRO_EXTERNO_CON_ANEXOS,
+  "JSON_VALIDO_REGISTRO_EXTERNO_CON_ANEXOS_VACIOS": JSON_VALIDO_REGISTRO_EXTERNO_CON_ANEXOS_VACIOS
+};
 
 export const comunicacionRequest = {
   // Happy Paths
