@@ -1,4 +1,4 @@
-@API @Entidades @GetEntidades @Revision
+@API @Entidades @GetEntidades
 Feature: Pruebas realizadas a la API "GET" - "/entidades/"
 # =================================================================================
 # == Pruebas para método GET /entidades/

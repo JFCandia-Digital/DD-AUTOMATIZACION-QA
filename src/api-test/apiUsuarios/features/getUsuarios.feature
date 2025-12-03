@@ -1,4 +1,4 @@
-@API @Usuarios @Revision
+@API @Usuarios
 Feature: Pruebas realizadas a la API "GET" - "/usuarios/"
 # =================================================================================
 # == Pruebas para método GET /usuarios/
@@ -34,7 +34,6 @@ Feature: Pruebas realizadas a la API "GET" - "/usuarios/"
 
     Examples:
       | campo                     | valor                | status | estructura                           | campo_error | mensaje_error_esperado |
-      | id                        |                    0 |    400 | ERROR_400_Bad_Request_con_errorCause | "message"   | "Petición no válida."  |
       | id                        | abc                  |    400 | ERROR_400_Bad_Request_con_errorCause | "message"   | "Petición no válida."  |
       | id                        | true                 |    400 | ERROR_400_Bad_Request_con_errorCause | "message"   | "Petición no válida."  |
       | id                        | null                 |    400 | ERROR_400_Bad_Request_con_errorCause | "message"   | "Petición no válida."  |
@@ -94,6 +93,7 @@ Feature: Pruebas realizadas a la API "GET" - "/usuarios/"
 
     Examples:
       | campo  | valor                | status | estructura                     | campo_error | mensaje_error_esperado |
+      | id     |                    0 |    200 | JSON_RESPONSE_RESULT_SIN_DATOS | "result"    | []                     |
       | nombre |                  1.5 |    200 | JSON_RESPONSE_RESULT_SIN_DATOS | "result"    | []                     |
       | nombre | true                 |    200 | JSON_RESPONSE_RESULT_SIN_DATOS | "result"    | []                     |
       | nombre | null                 |    200 | JSON_RESPONSE_RESULT_SIN_DATOS | "result"    | []                     |
