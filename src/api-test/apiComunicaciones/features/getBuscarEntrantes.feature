@@ -1,4 +1,4 @@
-@API @Comunicaciones @BuscarEntrantes @Revision
+@API @Comunicaciones @BuscarEntrantes
 Feature: Pruebas realizadas a la API "GET" - "/comunicaciones/buscar-entrantes"
 # =================================================================================
 # == Pruebas para método GET /comunicaciones/buscar-entrantes

@@ -1,4 +1,4 @@
-@API @Entidades @GetDependientes @Revision
+@API @Entidades @GetDependientes
 Feature: Pruebas realizadas a la API "GET" - "/entidades/dependientes/:entidadCodificadorId"
 # =================================================================================
 # == Pruebas para método GET /entidades/dependientes/:entidadCodificadorId

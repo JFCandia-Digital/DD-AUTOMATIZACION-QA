@@ -355,5 +355,13 @@ export const successStructures = {
       "id": "number",
       "fechaDespacho": "string"
     }
+  },
+
+  "JSON_RESPONSE_REGISTRO_INCIDENCIA": {
+    ...baseResponse,
+    "result": {
+      "id": "number",
+      "fechaDespacho": "string"
+    }
   }
 };
