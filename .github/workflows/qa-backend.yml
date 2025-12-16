@@ -1,0 +1,14 @@
+name: QA Backend
+
+on: [push, workflow_dispatch]
+
+jobs:
+  ejecutar-back:
+    uses: digital-gob-cl/QA-workflows/.github/workflows/motor-generic.yml@cert
+    with:
+      repo_to_test: 'digital-gob-cl/dd-automatizacion-qa' # Se apunta a sí mismo
+      npm_command: 'test:api' # Script específico de backend (definido en tu package.json)
+      tags: '@API'
+    secrets:
+      REPO_ACCESS_TOKEN: ${{ secrets.GH_PAT }}
+      CLAVE_UNICA_PASS: ${{ secrets.CLAVE_UNICA_PASS }}
