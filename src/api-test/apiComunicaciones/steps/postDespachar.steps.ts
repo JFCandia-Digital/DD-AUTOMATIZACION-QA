@@ -6,7 +6,7 @@ import fs from "fs";
 import _ from "lodash";
 import { PATHS } from '../../../common/support/constants';
 import path from "path";
-import { attachJsonToReport, attachReport } from "../../../common/utils/utils";
+import { attachJsonToReport, attachReport, obtenerFechaActualFormateada } from "../../../common/utils/utils";
 import { sendPostMultipartRequest } from "../../../common/support/apiClient";
 
 Given('que preparo una petición "POST" a {string} con token {string}', async function (this: any, endpoint: string, authType: string) {
@@ -60,7 +60,7 @@ Then('uso el cuerpo de petición llamado {string} como campo {string}', function
   }
 
   const requestBody = _.cloneDeep(requestBodyOriginal);
-  const dynamicTimestamp = new Date().toISOString().replace(/[:.]/g, '-');
+  const dynamicTimestamp = obtenerFechaActualFormateada().replace(/[:.]/g, '-');
 
   if (requestBody.materia === "AUT-materia-TEST") {
     requestBody.materia = `AUT-materia-TEST-${dynamicTimestamp}`;

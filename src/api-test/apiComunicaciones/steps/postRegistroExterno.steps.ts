@@ -27,7 +27,7 @@ Then('uso el cuerpo de registro externo llamado {string} como campo {string}', f
     console.log(`[DEBUG] Fecha externa generada: ${requestBody.fechaHoraDespachoExterno}`);
   }
 
-  const dynamicTimestamp = new Date().toISOString().replace(/[:.]/g, '-');
+  const dynamicTimestamp = obtenerFechaActualFormateada().replace(/[:.]/g, '-');
 
   if (requestBody.materia && typeof requestBody.materia === 'string' && requestBody.materia.startsWith("AUT-materia-TEST-REGISTRO-EXTERNO")) {
     requestBody.materia = `${requestBody.materia}-${dynamicTimestamp}`;

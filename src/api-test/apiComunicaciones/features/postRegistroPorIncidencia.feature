@@ -1,4 +1,4 @@
-@API @Comunicaciones @RegistroPorIncidencia
+@API @Comunicaciones @RegistroPorIncidencia @Revision2
 Feature: Pruebas realizadas a la API "POST" - "/comunicaciones/registro-por-incidencia"
 # =================================================================================
 # == Pruebas para método POST /comunicaciones/registro-por-incidencia
@@ -91,7 +91,6 @@ Feature: Pruebas realizadas a la API "POST" - "/comunicaciones/registro-por-inci
       | JSON_RI_INFO_VACIO_CONFIGURACION_DESTINATARIOS_ARRAY                                            | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_SIN_ENTIDAD_DESPACHADORA_CODIFICADOR_ID                                                 | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_SIN_FECHA_HORA_DESPACHO_EXTERNO                                                         | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
-      | JSON_RI_SIN_PLATAFORMA_DESPACHO_EXTERNO                                                         | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_SIN_MATERIA                                                                             | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_SIN_ID_TIPO_DOCUMENTO_OFICIAL                                                           | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_SIN_FOLIO                                                                               | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
@@ -112,8 +111,7 @@ Feature: Pruebas realizadas a la API "POST" - "/comunicaciones/registro-por-inci
     And el cuerpo de la respuesta debe tener la propiedad <campo_error> con el valor <mensaje_error_esperado>
 
     Examples: Campos que fallan validación (400 - Validation failure)
-      | body_name                               | archivo_anexo                                                                                                                                               | schema                | campo_error | mensaje_error_esperado |
-      | JSON_CON_ARCHIVOS_ANEXOS_FILENAME_CORTO_RI | ab.pdf                                                                                                                                                      | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
+      | body_name                               | archivo_anexo                                                                                                                                                  | schema                | campo_error | mensaje_error_esperado |
       | JSON_CON_ARCHIVOS_ANEXOS_FILENAME_LARGO_RI | aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.pdf | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
 
   
@@ -163,23 +161,16 @@ Feature: Pruebas realizadas a la API "POST" - "/comunicaciones/registro-por-inci
       | JSON_RI_ENTIDAD_DESPACHADORA_CODIFICADOR_ID_INTEGER_A_OBJECT_VACIO                           | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_ENTIDAD_DESPACHADORA_CODIFICADOR_ID_INTEGER_A_OBJECT_CON_DATO                        | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_ENTIDAD_DESPACHADORA_CODIFICADOR_ID_INTEGER_A_SIN_DATO                               | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
-      | JSON_RI_FOLIO_STRING_A_STRING_CARACTER_ESPECIAL                                              | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
-      | JSON_RI_FOLIO_STRING_A_INTEGER                                                               | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
-      | JSON_RI_FOLIO_STRING_A_BOOLEAN                                                               | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_FOLIO_STRING_A_ARRAY_VACIO                                                           | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_FOLIO_STRING_A_ARRAY_CON_DATO                                                        | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_FOLIO_STRING_A_OBJECT_VACIO                                                          | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_FOLIO_STRING_A_OBJECT_CON_DATO                                                       | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
-      | JSON_RI_ID_TIPO_DOCUMENTO_OFICIAL_INTEGER_A_STRING                                           | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_ID_TIPO_DOCUMENTO_OFICIAL_INTEGER_A_STRING_CARACTER_ESPECIAL                         | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_ID_TIPO_DOCUMENTO_OFICIAL_INTEGER_A_BOOLEAN                                          | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_ID_TIPO_DOCUMENTO_OFICIAL_INTEGER_A_ARRAY_VACIO                                      | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_ID_TIPO_DOCUMENTO_OFICIAL_INTEGER_A_ARRAY_CON_DATO                                   | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_ID_TIPO_DOCUMENTO_OFICIAL_INTEGER_A_OBJECT_VACIO                                     | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_ID_TIPO_DOCUMENTO_OFICIAL_INTEGER_A_OBJECT_CON_DATO                                  | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
-      | JSON_RI_MATERIA_STRING_A_NUMBER                                                              | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
-      | JSON_RI_MATERIA_STRING_A_STRING_CARACTER_ESPECIAL                                            | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
-      | JSON_RI_MATERIA_STRING_A_BOOLEAN                                                             | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_MATERIA_STRING_A_ARRAY_VACIO                                                         | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_MATERIA_STRING_A_ARRAY_CON_DATO                                                      | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_MATERIA_STRING_A_OBJECT_VACIO                                                        | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
@@ -193,14 +184,12 @@ Feature: Pruebas realizadas a la API "POST" - "/comunicaciones/registro-por-inci
       | JSON_RI_USUARIO_SOLICITENTE_OBJECT_A_ARRAY_VACIO                                             | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_USUARIO_SOLICITENTE_OBJECT_A_ARRAY_CON_DATO                                          | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_USUARIO_SOLICITENTE_OBJECT_A_OBJECT_CON_DATO                                         | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
-      | JSON_RI_DV_STRING_A_NUMBER                                                                   | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_DV_STRING_A_STRING_CARACTER_ESPECIAL                                                 | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_DV_STRING_A_BOOLEAN                                                                  | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_DV_STRING_A_ARRAY_VACIO                                                              | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_DV_STRING_A_ARRAY_CON_DATO                                                           | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_DV_STRING_A_OBJECT                                                                   | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_DV_STRING_A_OBJECT_CON_DATO                                                          | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
-      | JSON_RI_RUN_INTEGER_A_STRING                                                                 | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_RUN_INTEGER_A_STRING_CARACTER_ESPECIAL                                               | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_RUN_INTEGER_A_BOOLEAN                                                                | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | JSON_RI_RUN_INTEGER_A_ARRAY_VACIO                                                            | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
