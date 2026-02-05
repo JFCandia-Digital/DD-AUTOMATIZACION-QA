@@ -65,6 +65,27 @@ const JSON_MINIMO_VALIDO_RE = {
   "plataformaDespachoExterno": 598
 };
 
+// --- Variantes con fecha de despacho en días anteriores (Registro Externo) ---
+const JSON_MINIMO_VALIDO_RE_FECHA_MENOS_1_DIA = {
+  ...JSON_MINIMO_VALIDO_RE,
+  "fechaHoraDespachoExterno": "OFFSET_1_DIA"
+};
+
+const JSON_MINIMO_VALIDO_RE_FECHA_MENOS_2_DIAS = {
+  ...JSON_MINIMO_VALIDO_RE,
+  "fechaHoraDespachoExterno": "OFFSET_2_DIAS"
+};
+
+// --- Variantes con fecha de despacho en días posteriores (Registro Externo) ---
+const JSON_MINIMO_VALIDO_RE_FECHA_MAS_1_DIA = {
+  ...JSON_MINIMO_VALIDO_RE,
+  "fechaHoraDespachoExterno": "OFFSET_MAS_1_DIA"
+};
+
+const JSON_MINIMO_VALIDO_RE_FECHA_MAS_2_DIAS = {
+  ...JSON_MINIMO_VALIDO_RE,
+  "fechaHoraDespachoExterno": "OFFSET_MAS_2_DIAS"
+};
 
 const JSON_VALIDO_RE_CON_ANEXOS = crearVarianteArchivo(JSON_MINIMO_VALIDO_RE, "MINVU.pdf");
 
@@ -82,6 +103,28 @@ const JSON_MINIMO_VALIDO_RI = {
   "medioDespacho": "EMAIL",
   "fechaHoraDespachoExterno": null,
   "plataformaDespachoExterno": 598
+};
+
+// --- Variantes con fecha de despacho en días anteriores (Registro por Incidencia) ---
+const JSON_MINIMO_VALIDO_RI_FECHA_MENOS_1_DIA = {
+  ...JSON_MINIMO_VALIDO_RI,
+  "fechaHoraDespachoExterno": "OFFSET_1_DIA"
+};
+
+const JSON_MINIMO_VALIDO_RI_FECHA_MENOS_2_DIAS = {
+  ...JSON_MINIMO_VALIDO_RI,
+  "fechaHoraDespachoExterno": "OFFSET_2_DIAS"
+};
+
+// --- Variantes con fecha de despacho en días posteriores (Registro por Incidencia) ---
+const JSON_MINIMO_VALIDO_RI_FECHA_MAS_1_DIA = {
+  ...JSON_MINIMO_VALIDO_RI,
+  "fechaHoraDespachoExterno": "OFFSET_MAS_1_DIA"
+};
+
+const JSON_MINIMO_VALIDO_RI_FECHA_MAS_2_DIAS = {
+  ...JSON_MINIMO_VALIDO_RI,
+  "fechaHoraDespachoExterno": "OFFSET_MAS_2_DIAS"
 };
 
 const JSON_VALIDO_RI_CON_ANEXOS = crearVarianteArchivo(JSON_MINIMO_VALIDO_RI, "MINVU.pdf");
@@ -595,6 +638,22 @@ export const registroExternoRequest = {
   "JSON_VALIDO_RI_CON_ANEXOS_VACIOS": JSON_VALIDO_RI_CON_ANEXOS_VACIOS,
   "JSON_CON_ARCHIVOS_ANEXOS_FILENAME_CORTO_RI": JSON_CON_ARCHIVOS_ANEXOS_FILENAME_CORTO_RI,
   "JSON_CON_ARCHIVOS_ANEXOS_FILENAME_LARGO_RI": JSON_CON_ARCHIVOS_ANEXOS_FILENAME_LARGO_RI,
+
+  // Variantes con fecha de despacho en días anteriores (Registro Externo)
+  "JSON_MINIMO_VALIDO_RE_FECHA_MENOS_1_DIA": JSON_MINIMO_VALIDO_RE_FECHA_MENOS_1_DIA,
+  "JSON_MINIMO_VALIDO_RE_FECHA_MENOS_2_DIAS": JSON_MINIMO_VALIDO_RE_FECHA_MENOS_2_DIAS,
+
+  // Variantes con fecha de despacho en días anteriores (Registro por Incidencia)
+  "JSON_MINIMO_VALIDO_RI_FECHA_MENOS_1_DIA": JSON_MINIMO_VALIDO_RI_FECHA_MENOS_1_DIA,
+  "JSON_MINIMO_VALIDO_RI_FECHA_MENOS_2_DIAS": JSON_MINIMO_VALIDO_RI_FECHA_MENOS_2_DIAS,
+
+  // Variantes con fecha de despacho en días posteriores (Registro Externo)
+  "JSON_MINIMO_VALIDO_RE_FECHA_MAS_1_DIA": JSON_MINIMO_VALIDO_RE_FECHA_MAS_1_DIA,
+  "JSON_MINIMO_VALIDO_RE_FECHA_MAS_2_DIAS": JSON_MINIMO_VALIDO_RE_FECHA_MAS_2_DIAS,
+
+  // Variantes con fecha de despacho en días posteriores (Registro por Incidencia)
+  "JSON_MINIMO_VALIDO_RI_FECHA_MAS_1_DIA": JSON_MINIMO_VALIDO_RI_FECHA_MAS_1_DIA,
+  "JSON_MINIMO_VALIDO_RI_FECHA_MAS_2_DIAS": JSON_MINIMO_VALIDO_RI_FECHA_MAS_2_DIAS,
 
   // Campos Faltantes (específicos de registro externo)
   "JSON_RE_SIN_CONFIGURACION_DESTINATARIOS": RE_SIN_CONFIGURACION_DESTINATARIOS,

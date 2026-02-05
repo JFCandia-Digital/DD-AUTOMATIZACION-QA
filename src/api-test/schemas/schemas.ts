@@ -23,9 +23,9 @@ const baseResponse = {
 };
 
 const baseEntidad = {
-  "id": "number",
+  "entidadId": "number",
   "entidadCodificadorId": "number",
-  "nombre": "string",
+  "entidadNombre": "string",
   "isPrincipal": "boolean",
   "entidadDependenciaId": "number",
   "entidadDependenciaCodificadorId": "number",
@@ -39,8 +39,8 @@ const baseEntidadDetalle = {
 };
 
 const baseBusqueda = {
-  "id": "number",
-  "nombre": "string",
+  "entidadId": "number",
+  "entidadNombre": "string",
   "isPrincipal": "boolean",
   "entidadDependenciaId?": "number",
   "entidadDependenciaCodificadorId?": "number",
@@ -124,17 +124,18 @@ const genericResponse = {
 };
 
 const baseUsuarioEntidad = {
-  "run": "number",
   "dv": "string",
-  "correoInstitucional": "string",
-  "cargo": "string",
   "entidad": {
-    "nombre": "string",
-    "id": "number"
+    "entidadId": "number",
+    "entidadNombre": "string",
+    "entidadCodificadorId?": "number"
   },
-  "nombreCompleto": "string",
   "roles": ["string"],
-  "id": "number"
+  "usuarioId": "number",
+  "usuarioRun": "string",
+  "nombreCompleto": "string",
+  "correoInstitucional": "string",
+  "usuarioCargo": "string"
 };
 
 const baseTareaRecepcion = {

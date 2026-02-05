@@ -4,7 +4,7 @@ import { registroExternoRequest } from '../../request/requestBodies';
 import FormData from "form-data";
 import fs from "fs";
 import _ from "lodash";
-import { attachJsonToReport, attachReport, obtenerFechaActualFormateada } from "../../../common/utils/utils";
+import { attachJsonToReport, attachReport, obtenerFechaActualFormateada, obtenerFechaConOffset } from "../../../common/utils/utils";
 import { sendPostMultipartRequest } from "../../../common/support/apiClient";
 
 Then('uso el cuerpo de registro externo llamado {string} como campo {string}', function (this: any, bodyName: string, campoName: string) {
@@ -20,23 +20,36 @@ Then('uso el cuerpo de registro externo llamado {string} como campo {string}', f
 
   const requestBody = _.cloneDeep(requestBodyOriginal);
 
-  const fechaFormateada = obtenerFechaActualFormateada();
+  // Manejo dinámico de fechaHoraDespachoExterno mediante mapa de offsets
+  const offsetMap: Record<string, number> = { "OFFSET_1_DIA": 1, "OFFSET_2_DIAS": 2, "OFFSET_MAS_1_DIA": -1, "OFFSET_MAS_2_DIAS": -2 };
+  const fechaValue = requestBody.fechaHoraDespachoExterno;
+  const offsetDias = offsetMap[fechaValue] ?? null;
 
-  if (requestBody.fechaHoraDespachoExterno === null) {
-    requestBody.fechaHoraDespachoExterno = fechaFormateada;
-    console.log(`[DEBUG] Fecha externa generada: ${requestBody.fechaHoraDespachoExterno}`);
+  const fechaParaTimestamp = offsetDias !== null
+    ? obtenerFechaConOffset(offsetDias)
+    : obtenerFechaActualFormateada();
+
+  const requiereReemplazo = fechaValue === null || offsetDias !== null;
+
+  if (requiereReemplazo) {
+    requestBody.fechaHoraDespachoExterno = fechaParaTimestamp;
+    console.log(`[DEBUG] Fecha externa generada (offset: ${offsetDias ?? 0} días): ${requestBody.fechaHoraDespachoExterno}`);
   }
 
-  const dynamicTimestamp = obtenerFechaActualFormateada().replace(/[:.]/g, '-');
+  const dynamicTimestamp = fechaParaTimestamp.replace(/[:.]/g, '-');
+  const prefijosMateria = ["AUT-materia-TEST-REGISTRO-EXTERNO", "AUT-materia-TEST-REGISTRO-POR-INCIDENCIA"];
+  const materiaEsDinamica = typeof requestBody.materia === 'string'
+    && prefijosMateria.some(prefijo => requestBody.materia.startsWith(prefijo));
 
-  if (requestBody.materia && typeof requestBody.materia === 'string' && requestBody.materia.startsWith("AUT-materia-TEST-REGISTRO-EXTERNO")) {
+  if (materiaEsDinamica) {
     requestBody.materia = `${requestBody.materia}-${dynamicTimestamp}`;
   }
 
   attachJsonToReport(this, requestBody, `RequestBody_RegistroExterno_${bodyName}.json`);
-  
+
   this.requestBody = requestBody;
-  apiContext.attachData.requestBody['registroComunicacionRequest'] = requestBody;
+  this.campoName = campoName;
+  apiContext.attachData.requestBody[campoName] = requestBody;
 });
 
 
@@ -68,9 +81,9 @@ When('envío la petición multipart de registro externo', { timeout: 60 * 1000 }
   
   const bodyAsString = JSON.stringify(this.requestBody);
   
-  formData.append('registroComunicacionRequest', bodyAsString, { contentType: 'application/json' });
-  
-  apiContext.attachData.requestBody['registroComunicacionRequest'] = this.requestBody;
+  formData.append(this.campoName, bodyAsString, { contentType: 'application/json' });
+
+  apiContext.attachData.requestBody[this.campoName] = this.requestBody;
 
   await sendPostMultipartRequest(this.endpoint, this.authType, formData);
 
