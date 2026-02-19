@@ -225,6 +225,26 @@ Feature: Pruebas realizadas a la API "POST" - "/comunicaciones/registro-externo"
       | JSON_RE_SIN_IS_EN_COPIA_DESTINATARIOS_CONFIGURACION_DESTINATARIOS       | JSON_RESPONSE_REGISTRO_EXTERNO | "message" | "OK"             |
       | JSON_RE_SIN_IS_EN_COPIA_DESTINATARIOS_CONFIGURACION_DESTINATARIOS_ARRAY | JSON_RESPONSE_REGISTRO_EXTERNO | "message" | "OK"             |
 # =================================================================================
+# == Pruebas de formato inválido para fechaHoraDespachoExterno (Registro Externo)
+# =================================================================================
+
+  @FormatoFechaRE
+  Scenario Outline: Validar formato del campo "fechaHoraDespachoExterno" en JSON 'registroComunicacionExternaRequest'
+    Given que solicito un token de acceso con el usuario "CLIENT_ID_PDI" y el password "CLIENT_SECRET_PDI"
+    And que preparo una petición "POST" a "/comunicaciones/registro-externo" con token "válido"
+    And uso el cuerpo de registro externo llamado "<body_name>" como campo "registroComunicacionExternaRequest"
+    And adjunto un archivo valido "2_FIRMANTES_EN_DOC_DIGITAL.pdf" como "documentoPrincipal"
+    When envío la petición multipart de registro externo
+    Then el estado de la respuesta debe ser 400
+    And el cuerpo de la respuesta debe tener la estructura de error "<schema>"
+    And el cuerpo de la respuesta debe tener la propiedad <campo_error> con el valor <mensaje_error_esperado>
+
+    Examples: Formatos de fecha incompletos (solo fecha o solo hora)
+      | body_name                          | schema                | campo_error | mensaje_error_esperado |
+      | JSON_RE_FECHA_HORA_DE_SOLO_FECHA   | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
+      | JSON_RE_FECHA_HORA_DE_SOLO_HORA    | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
+
+# =================================================================================
 # == Pruebas de fecha de despacho externo con días anteriores (Registro Externo)
 # =================================================================================
 
