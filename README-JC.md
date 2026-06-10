@@ -276,7 +276,7 @@ Crear
 
 ✅ Paso 3
 Ejecutar autenticación:
-Shellnpm run authMostrar más líneas
+npm run auth
 
 ✅ Paso 4
 Validar token en Swagger
