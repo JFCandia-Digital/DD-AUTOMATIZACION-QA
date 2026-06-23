@@ -66,8 +66,10 @@ Then('uso el cuerpo de petición llamado {string} como campo {string}', function
     requestBody.materia = `AUT-materia-TEST-${dynamicTimestamp}`;
   }
 
+  const notificacionIniciales = process.env.NOTIFICACION_QA_INICIALES || 'JFC';
+
   if (requestBody.materia === "AUT-materia-NOTIFICACION") {
-    requestBody.materia = `QA Notificacion ${dynamicTimestamp}`;
+    requestBody.materia = `QA Notificacion ${notificacionIniciales} ${dynamicTimestamp}`;
   }
 
   apiContext.worldData.set("materiaActual", requestBody.materia);
@@ -77,7 +79,7 @@ Then('uso el cuerpo de petición llamado {string} como campo {string}', function
   }
 
   if (requestBody.folio === "FOLIO-NOTIFICACION-BASE") {
-    requestBody.folio = `QA-NOTI-${dynamicTimestamp}`;
+    requestBody.folio = `QA-NOTI-${notificacionIniciales}-${dynamicTimestamp}`;
   }
 
   if (requestBody.descripcion === "AUT-descripcion-TEST") { 
