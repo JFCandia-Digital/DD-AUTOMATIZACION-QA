@@ -8,6 +8,18 @@ Feature: Pruebas realizadas a la API "POST" - "/comunicaciones/despachar-tipo-no
   Background:
     Given que solicito un token de acceso con el usuario "CLIENT_ID_PDI" y el password "CLIENT_SECRET_PDI"
 
+  @Notificacion_HappyPath
+  Scenario: Despachar notificación con documento firmado y datos PA válidos
+    Given que preparo una petición "POST" a "/comunicaciones/despachar-tipo-notificacion" con token "válido"
+    And uso el cuerpo de petición llamado "JSON_NOTIFICACION_HAPPY_PATH" como campo "comunicacionRequest"
+    And adjunto un archivo valido "2_FIRMANTES_EN_DOC_DIGITAL.pdf" como "documentoPrincipal"
+    When envío la petición multipart
+    Then el estado de la respuesta debe ser 200
+    And el cuerpo de la respuesta debe tener la estructura de éxito "COMUNICACION_DESPACHAR_EXITOSA"
+    And la propiedad "result.fechaDespacho" del cuerpo de la respuesta debe ser una fecha y hora actual
+    And guardo el valor de la propiedad "result.id" como "comunicacionNotificacionId" en el contexto
+    And la respuesta debe contener un id
+
   @Notificacion_SinFirma
   Scenario: Validar rechazo de notificación con documento principal sin firma digital
     Given que preparo una petición "POST" a "/comunicaciones/despachar-tipo-notificacion" con token "válido"
@@ -39,8 +51,26 @@ Feature: Pruebas realizadas a la API "POST" - "/comunicaciones/despachar-tipo-no
       | JSON_NOTIFICACION_SIN_DV_USUARIO_SOLICITANTE        | "Digito verificador del RUN es obligatorio"         |
       | JSON_NOTIFICACION_SIN_TIPO_PROCEDIMIENTO            | "tipoProcedimientoAdministrativo es obligatorio"    |
 
-  # Con PDF sin firma, si el JSON es válido el API valida firma (4001) antes que dependientes.
-  # Cuando exista PDF firmado, reforzar este escenario con el mensaje de negocio de dependientes.
+  @Notificacion_Dependientes @requires-dependiente-id
+  Scenario: Despachar notificación con entidad dependiente como destinatario en copia
+    Given que preparo una petición "POST" a "/comunicaciones/despachar-tipo-notificacion" con token "válido"
+    And uso el cuerpo de petición llamado "JSON_NOTIFICACION_DEPENDIENTE_EN_COPIA" como campo "comunicacionRequest"
+    And adjunto un archivo valido "2_FIRMANTES_EN_DOC_DIGITAL.pdf" como "documentoPrincipal"
+    When envío la petición multipart
+    Then el estado de la respuesta debe ser 200
+    And el cuerpo de la respuesta debe tener la estructura de éxito "COMUNICACION_DESPACHAR_EXITOSA"
+    And la respuesta debe contener un id
+
+  @Notificacion_Dependientes @requires-dependiente-id
+  Scenario: Despachar notificación con entidad dependiente de la despachadora como destinatario principal
+    Given que preparo una petición "POST" a "/comunicaciones/despachar-tipo-notificacion" con token "válido"
+    And uso el cuerpo de petición llamado "JSON_NOTIFICACION_DEPENDIENTE_COMO_PRINCIPAL" como campo "comunicacionRequest"
+    And adjunto un archivo valido "2_FIRMANTES_EN_DOC_DIGITAL.pdf" como "documentoPrincipal"
+    When envío la petición multipart
+    Then el estado de la respuesta debe ser 200
+    And el cuerpo de la respuesta debe tener la estructura de éxito "COMUNICACION_DESPACHAR_EXITOSA"
+    And la respuesta debe contener un id
+
   @Notificacion_Dependientes
   Scenario: Validar rechazo de notificación con destinatario no dependiente de la entidad despachadora
     Given que preparo una petición "POST" a "/comunicaciones/despachar-tipo-notificacion" con token "válido"

@@ -31,7 +31,10 @@
     "revision1": "npx cucumber-js --profile api --tags @Revision1",
     "revision2": "npx cucumber-js --profile api --tags @FechaRecepcion",
     "notificacion": "npx cucumber-js --profile api --tags @Notificacion",
-    "notificacion_sin_firma": "npx cucumber-js --profile api --tags @Notificacion_SinFirma"
+    "notificacion_sin_firma": "npx cucumber-js --profile api --tags @Notificacion_SinFirma",
+    "notificacion_happy_path": "npx cucumber-js --profile api --tags @Notificacion_HappyPath",
+    "notificacion_dependientes": "npx cucumber-js --profile api --tags @Notificacion_Dependientes",
+    "notificacion_report": "npm run notificacion && npm run api-report"
   },
   "keywords": [],
   "author": "",

@@ -149,6 +149,14 @@ const JSON_MINIMO_VALIDO_RI_RECEPCION_IGUAL = {
 };
 
 
+const NOTIFICACION_ENTIDAD_DESPACHADORA_CODIFICADOR_ID = Number(
+  process.env.NOTIFICACION_ENTIDAD_DESPACHADORA_CODIFICADOR_ID || 598
+);
+
+const NOTIFICACION_DESTINATARIO_PRINCIPAL_ID = Number(
+  process.env.NOTIFICACION_DESTINATARIO_PRINCIPAL_ID || 156
+);
+
 const JSON_NOTIFICACION_VALIDO = {
   "materia": "AUT-materia-NOTIFICACION",
   "folio": "FOLIO-NOTIFICACION-BASE",
@@ -157,12 +165,12 @@ const JSON_NOTIFICACION_VALIDO = {
   "configuracionDestinatarios": {
     "destinatarios": [
       {
-        "entidadDestinatariaCodificadorId": 66,
+        "entidadDestinatariaCodificadorId": NOTIFICACION_DESTINATARIO_PRINCIPAL_ID,
         "isEnCopia": false
       }
     ]
   },
-  "entidadDespachadoraCodificadorId": 66,
+  "entidadDespachadoraCodificadorId": NOTIFICACION_ENTIDAD_DESPACHADORA_CODIFICADOR_ID,
   "usuarioSolicitante": {
     "run": 11111111,
     "dv": "1"
@@ -177,6 +185,43 @@ const JSON_NOTIFICACION_VALIDO = {
 const NOTIFICACION_DESTINATARIO_NO_DEPENDIENTE_ID = Number(
   process.env.NOTIFICACION_DESTINATARIO_NO_DEPENDIENTE_ID || 598
 );
+
+const NOTIFICACION_DEPENDIENTE_CODIFICADOR_ID = Number(
+  process.env.NOTIFICACION_DEPENDIENTE_CODIFICADOR_ID || 0
+);
+
+const JSON_NOTIFICACION_HAPPY_PATH = {
+  ...JSON_NOTIFICACION_VALIDO,
+  "incorporaAnexos": false,
+};
+
+const JSON_NOTIFICACION_DEPENDIENTE_EN_COPIA = {
+  ...JSON_NOTIFICACION_HAPPY_PATH,
+  "configuracionDestinatarios": {
+    "destinatarios": [
+      {
+        "entidadDestinatariaCodificadorId": NOTIFICACION_DESTINATARIO_PRINCIPAL_ID,
+        "isEnCopia": false,
+      },
+      {
+        "entidadDestinatariaCodificadorId": NOTIFICACION_DEPENDIENTE_CODIFICADOR_ID,
+        "isEnCopia": true,
+      },
+    ],
+  },
+};
+
+const JSON_NOTIFICACION_DEPENDIENTE_COMO_PRINCIPAL = {
+  ...JSON_NOTIFICACION_HAPPY_PATH,
+  "configuracionDestinatarios": {
+    "destinatarios": [
+      {
+        "entidadDestinatariaCodificadorId": NOTIFICACION_DEPENDIENTE_CODIFICADOR_ID,
+        "isEnCopia": false,
+      },
+    ],
+  },
+};
 
 const JSON_NOTIFICACION_SIN_DESTINATARIOS = crearVarianteSinCampo(
   JSON_NOTIFICACION_VALIDO,
@@ -1304,6 +1349,9 @@ export const registroExternoRequest = {
 export const comunicacionRequest = {
   // Happy Paths
   "JSON_NOTIFICACION_VALIDO": JSON_NOTIFICACION_VALIDO,
+  "JSON_NOTIFICACION_HAPPY_PATH": JSON_NOTIFICACION_HAPPY_PATH,
+  "JSON_NOTIFICACION_DEPENDIENTE_EN_COPIA": JSON_NOTIFICACION_DEPENDIENTE_EN_COPIA,
+  "JSON_NOTIFICACION_DEPENDIENTE_COMO_PRINCIPAL": JSON_NOTIFICACION_DEPENDIENTE_COMO_PRINCIPAL,
 
   // --- VARIACIONES INVÁLIDAS NOTIFICACIÓN (PA) ---
   "JSON_NOTIFICACION_SIN_DESTINATARIOS": JSON_NOTIFICACION_SIN_DESTINATARIOS,
