@@ -30,7 +30,8 @@
     "fechaAnteriorPosteriorRI": "npx cucumber-js --profile api --tags @FechaAnteriorPosteriorRI",
     "revision1": "npx cucumber-js --profile api --tags @Revision1",
     "revision2": "npx cucumber-js --profile api --tags @FechaRecepcion",
-    "notificacion": "npx cucumber-js --profile api --tags @Notificacion_OK --format json:report.json"
+    "notificacion": "npx cucumber-js --profile api --tags @Notificacion",
+    "notificacion_sin_firma": "npx cucumber-js --profile api --tags @Notificacion_SinFirma"
   },
   "keywords": [],
   "author": "",
