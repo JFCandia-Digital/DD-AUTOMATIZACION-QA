@@ -29,7 +29,8 @@
     "fechaAnteriorPosteriorRE": "npx cucumber-js --profile api --tags @FechaAnteriorPosteriorRE",
     "fechaAnteriorPosteriorRI": "npx cucumber-js --profile api --tags @FechaAnteriorPosteriorRI",
     "revision1": "npx cucumber-js --profile api --tags @Revision1",
-    "revision2": "npx cucumber-js --profile api --tags @FechaRecepcion"
+    "revision2": "npx cucumber-js --profile api --tags @FechaRecepcion",
+    "notificacion": "npx cucumber-js --profile api --tags @Notificacion_OK --format json:report.json"
   },
   "keywords": [],
   "author": "",
@@ -39,7 +40,9 @@
     "@cucumber/cucumber": "^12.8.1",
     "@playwright/test": "^1.59.1",
     "@types/node": "^25.6.0",
+    "@types/supertest": "^7.2.0",
     "cross-env": "^10.1.0",
+    "cucumber-html-reporter": "^7.2.0",
     "dotenv": "^17.4.2",
     "multiple-cucumber-html-reporter": "^3.10.0",
     "ts-node": "^10.9.2",
@@ -49,6 +52,7 @@
     "@types/lodash": "^4.17.24",
     "axios": "^1.15.0",
     "form-data": "^4.0.5",
-    "lodash": "^4.18.1"
+    "lodash": "^4.18.1",
+    "supertest": "^7.2.2"
   }
 }

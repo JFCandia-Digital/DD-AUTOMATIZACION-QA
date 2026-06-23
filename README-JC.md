@@ -1,327 +1,120 @@
-📄 Framework de Automatización API – DocDigital (Guía de Uso y Análisis QA)
+🔵 Framework de Automatización API – DocDigital
+🔷 Guía de Uso, Arquitectura y Cobertura QA
 
-🧭 1. Descripción General
-Este proyecto corresponde a un framework de automatización de pruebas de API, diseñado para validar el sistema DocDigital mediante pruebas:
+🔷 1. Descripción General
+Este proyecto corresponde a un framework de automatización de pruebas de API, diseñado para validar el sistema DocDigital mediante pruebas funcionales, de integración y end-to-end (E2E).
+Su objetivo principal es garantizar que los flujos de comunicación electrónica entre instituciones funcionen correctamente de manera automatizada.
 
-✅ Funcionales
-✅ De integración
-✅ End-to-End (E2E)
+🔷 2. ¿Qué es este proyecto?
+Este repositorio no es la API.
+Es un framework que prueba la API automáticamente.
+Permite ejecutar pruebas como obtener token, enviar documentos, consultar datos y procesar tareas sin intervención manual.
 
-El objetivo principal es permitir la validación automatizada del envío, recepción y consulta de documentos electrónicos entre instituciones.
+🔷 3. Tecnologías utilizadas
+TypeScript → lenguaje base del proyecto.
+Cucumber → definición de escenarios bajo enfoque BDD.
+Axios → ejecución de llamadas HTTP a la API.
+Playwright (expect) → validación de respuestas.
+DotEnv → manejo de variables de entorno.
+multiple-cucumber-html-reporter → reportes HTML.
 
-🧠 2. ¿Qué es este proyecto?
-Este repositorio NO es la API, sino que es:
-👉 Un sistema que prueba la API automáticamente
+🔷 4. Relación con Swagger
+El framework está alineado directamente con los endpoints definidos en Swagger.
+Swagger se utiliza para pruebas manuales y exploración, mientras que el framework automatiza dichos endpoints.
+Esto permite validar APIs primero manualmente y luego automatizarlas.
 
-🔥 Qué hace
-El framework ejecuta pruebas como:
+🔷 5. Arquitectura del proyecto
+apiClient.ts centraliza todas las llamadas HTTP usando Axios.
+apiContext.ts almacena el token, la última respuesta y datos compartidos entre pasos.
+utils.ts proporciona funciones auxiliares y lectura de variables de entorno.
+schemas define la estructura esperada de las respuestas JSON.
+request contiene payloads reutilizables para requests POST.
 
-Obtener token de autenticación
-Enviar documentos (POST)
-Consultar datos (GET)
-Procesar recepciones (PUT)
-
-👉 Todo esto de forma automática
-
-⚙️ 3. Tecnologías utilizadas
-
-
-Tecnología                                                  Uso
-
-TypeScript                                          Lenguaje base
-Cucumber                                            Definición de escenarios (BDD)
-Axios                                               Ejecución de llamadas HTTP a la API
-Playwright (expect)                                 Validación de respuestas (asserts)
-DotEnv                                              Manejo de variables de entorno
-multiple-cucumber-html-reporter                     Reportes
-
-🌐 4. Relación con Swagger y API
-El framework está directamente conectado con la API documentada en Swagger.
+🔷 6. Configuración de entorno
+El proyecto depende de un archivo llamado .env.api.
+Este archivo contiene la URL base, credenciales y configuración del entorno.
 Ejemplo:
-
-        Swagger                    Framework
-
-GET /pendientes-recepcion       getPendientesRecepcion.feature
-POST /despachar                 flujo E2E
-PUT /acuse-recibo               procesamiento de tareas
-
-👉 El framework automatiza los endpoints definidos en Swagger.
-
-
-🏗️ 5. Arquitectura del proyecto
-🔹 Componentes principales
-
-📌 apiClient.ts
-Contiene la lógica de llamadas HTTP hacia la API.
-👉 Es el único archivo que usa Axios
-👉 Centraliza requests (GET, POST, PUT)
-
-📌 apiContext.ts
-Objeto global que guarda:
-
-token actual ✅
-última respuesta ✅
-datos entre pasos ✅
-
-👉 Permite conectar los escenarios
-
-📌 utils.ts
-Funciones auxiliares:
-
-lectura de variables .env
-generación de reportes
-
-
-📌 schemas/
-Define los esquemas esperados de respuesta.
-👉 Se utiliza para validar estructura de JSON
-
-📌 request/
-Contiene los payloads para requests POST.
-
-🔐 6. Configuración de entorno (CRÍTICO)
-El proyecto depende de un archivo:
-
-.env.api
-
-
-✅ Qué es
-Archivo de configuración que contiene:
-
-URL de la API
-credenciales
-configuración del entorno
-
-
-🧠 Por qué es necesario
-👉 Sin este archivo:
-
-❌ no hay autenticación
-❌ no se puede conectar a la API
-❌ los tests fallan
-
-
-📄 Ejemplo
-
 API_BASEURL=https://middleware.docv3.test.digital.gob.cl/api/v3
 CLIENT_ID_PDI=XXXX
 CLIENT_SECRET_PDI=XXXX
+Sin este archivo no es posible autenticarse ni ejecutar pruebas.
 
-⚠️ 7. Qué me falta para ejecutar
-Actualmente el proyecto está:
-
-✅ Clonado
-✅ Instalado (npm install)
-✅ Código listo
-
-🔴 Falta:
-
-Credenciales de TEST
-Archivo .env.api configurado
-
-
-✅ Acción requerida
-Solicitar al equipo:
-
-“Credenciales de test (CLIENT_ID y CLIENT_SECRET) para configurar el archivo .env.api.”
-
-
-🚀 8. Ejecución de pruebas
-
-✅ Prueba segura (recomendada)
-
-npm run authMostrar más líneas
-Valida:
-
-generación de token
-autenticación
-
-👉 No modifica datos
-
-⚠️ Pruebas con impacto
-- npm run comunicaciones
-- npm run revision
-- npm run apiTest
-
-👉 Estas pruebas:
-
-- envían documentos
-- cambian estado
-- interactúan con el sistema real
-
-
-🧪 9. Tipos de pruebas implementadas
-
-✅ Autenticación
-Valida:
-
-- token válido
-- credenciales inválidas
-- errores 401
-
-
-✅ Consulta (GET)
-Ejemplo:
-
-- pendientes de recepción
-- datos de comunicación
-
-
-✅ Envío (POST)
-Envía documentos mediante:
-
-- multipart/form-data
-
-
-✅ Flujo E2E
-Simula proceso completo:
-
-- Enviar → Consultar → Recibir → Confirmar
-
-
-🔥 10. Flujo más importante
-El flujo principal es:
-
-getAcuseRecibo.feature
-
-🧠 Qué hace
-
-- PDI envía documento
-- ARMADA recibe
-- procesa tareas
-- repite para otras entidades
-
-
-👉 Esto representa el negocio real del sistema
-
-⚠️ 11. Riesgos importantes
-
-- Dependencia de PDFs firmados
-- Integración con múltiples sistemas
-- Modificación de datos reales
-- Uso de credenciales reales
-
-
-🧠 12. Enfoque QA correcto
-
-❌ No hacer
-
-- ejecutar E2E sin validar entorno
-- automatizar sin credenciales
-- probar sin entender flujo
-
-
-✅ Hacer
-
-- validar autenticación primero
-- usar Swagger para probar endpoints
-- ejecutar pruebas progresivamente
-- trabajar con datos de TEST
-
-
-📊 13. Uso de Swagger
-Swagger permite:
-
-- ver endpoints
-- probar manualmente
-- validar respuestas rápidas
-- entender la AP
-
-“Swagger se utiliza para explorar y validar endpoints de forma manual, mientras que la ejecución principal de pruebas automatizadas se realiza desde el framework en Visual Studio Code.”
-
-
-🔐 Requiere:
-
-- Bearer Token
-
-
-👉 Se obtiene desde:
-
-- npm run auth
-
-👉 Hace:
-
-- obtiene token
-- valida respuesta
-- ejecuta assertions
-- usa Cucumber
-
-
-🎯 14. Estado actual
-Actualmente:
-✔ entorno preparado
-✔ framework entendido
-✔ Swagger analizado
-✔ pruebas manuales realizadas
-
-🔴 Pendiente
-
-credenciales
-ejecutar pruebas automáticas
-
-
-✅ 15. Conclusión
-
-El framework es una solución completa para automatización de pruebas API, alineada con los flujos del sistema DocDigital, permitiendo validación de autenticación, consultas y procesos end-to-end.
-Para su ejecución es necesario configurar variables de entorno con credenciales válidas y realizar una ejecución controlada iniciando por pruebas seguras.
-
-🚀 16. Plan de acción (paso a paso)
-
-✅ Paso 1
-Solicitar credenciales de test
-
-✅ Paso 2
-Crear 
-.env.api
-
-✅ Paso 3
-Ejecutar autenticación:
+🔷 7. Ejecución de pruebas
+Para validar autenticación:
 npm run auth
+Para ejecutar pruebas del endpoint de notificación:
+npm run notificacion
+Existen pruebas que modifican datos del sistema como comunicaciones, revisión y apiTest.
 
-✅ Paso 4
-Validar token en Swagger
+🔷 8. Tipos de pruebas implementadas
+Pruebas de autenticación validan generación de token y errores.
+Pruebas GET permiten consultar datos del sistema.
+Pruebas POST envían documentos mediante multipart/form-data.
+Pruebas E2E simulan flujos completos del sistema.
 
-✅ Paso 5
-Ejecutar pruebas GET
+🔷 9. Endpoint nuevo: Notificación (API v3.5)
+Se implementa el endpoint:
+POST /comunicaciones/despachar-tipo-notificacion
+Este endpoint recibe un request multipart con datos y un documento PDF.
+El sistema valida la firma electrónica del documento y aplica reglas de negocio.
 
-✅ Paso 6
-Avanzar a pruebas E2E (con control)
+🔷 10. Escenarios implementados
+Se implementó el escenario de rechazo sin firma.
+El sistema responde con status 400 y errorCode 4001 cuando el documento no contiene firma electrónica válida.
+Este comportamiento fue validado automáticamente con el framework.
 
-💬 FRASE FINAL (para presentación)
+🔷 11. Escenario pendiente
+El escenario exitoso depende de un PDF firmado electrónicamente con FEA válida.
+Sin este documento el sistema siempre retorna error 4001.
+El escenario positivo debe validar status 200 y creación de la comunicación con ID.
 
-“El framework permite validar de forma automatizada los flujos críticos de la API DocDigital, asegurando autenticación, integridad de datos y correcta ejecución de procesos end-to-end, manteniendo un enfoque controlado basado en ambientes de pruebas y gestión segura de credenciales.”
+🔷 12. Cobertura QA esperada
+Casos obligatorios:
+Documento con firma válida devuelve 200.
+Documento sin firma devuelve 400 con error 4001.
+Casos de validación:
+Sin destinatario devuelve 400.
+Sin usuario solicitante devuelve 400.
+Sin procedimiento administrativo devuelve 400.
+Casos de negocio:
+Destinatario dependiente como principal es rechazado.
+Destinatario dependiente en copia es permitido.
 
+🔷 13. Riesgos importantes
+Dependencia de documentos firmados.
+Validaciones criptográficas del sistema.
+Uso de datos reales de integración.
+Dependencia de múltiples sistemas.
 
-💥 BONUS (importante para ti)
-👉 Con esto ya puedes:
-✅ explicar el proyecto
-✅ entender cómo funciona
-✅ justificar decisiones
-✅ preparar automatización
+🔷 14. Enfoque QA aplicado
+Se valida el comportamiento real mediante respuestas de la API.
+Los errores se interpretan como reglas de negocio y no como fallas técnicas.
+Se prioriza la validación de integración completa.
 
+🔷 15. Reportes
+Los reportes se generan automáticamente en:
+reports/cucumber-api/api-report.html
+Incluyen escenarios, steps, request y response.
 
-*****************************************************************
+🔷 16. Estado actual
+Autenticación funcional.
+Framework funcionando correctamente.
+Validación negativa del endpoint de notificación implementada.
+Reportes generados correctamente.
+Pendiente:
+Obtener PDF firmado FEA.
+Implementar escenario exitoso.
+Completar cobertura QA.
 
+🔷 17. Plan de acción
+Solicitar documento firmado válido.
+Ejecutar escenario positivo (200).
+Agregar escenarios negativos adicionales.
+Completar cobertura QA del endpoint.
 
-✅ ✅ 7. Qué puedes decir en reunión (esto te posiciona fuerte)
+🔷 18. Conclusión
+El framework permite validar la API DocDigital de forma automatizada, cubriendo autenticación, integración y reglas de negocio.
+El endpoint de notificación fue validado correctamente en su comportamiento de rechazo, quedando pendiente la validación del flujo exitoso condicionado a la disponibilidad de un documento firmado.
 
-"El framework está organizado por módulos funcionales de la API, separando autenticación, comunicaciones, usuarios y entidades. Esto permite ejecutar pruebas de forma controlada, comenzando por autenticación y endpoints de consulta antes de avanzar a flujos completos que implican modificación de datos."
-
-
-🎯 ✅ CONCLUSIÓN
-👉 Lo que tienes:
-✔ framework completo
-✔ pruebas listas
-✔ flujo definido
-✔ integración con Swagger
-
-👉 Lo que te falta:
-🔑 credenciales
-📄 .env.api
-
-👉 Lo que debes hacer:
-
-pedir credenciales ✅
-ejecutar npm run auth ✅
-validar token ✅
-avanzar por módulos ✅
+🔷 Frase final
+El framework permite validar de forma automatizada los flujos críticos de la API DocDigital, asegurando autenticación, integridad de datos y correcta ejecución de procesos end-to-end, considerando tanto escenarios exitosos como validaciones de negocio.

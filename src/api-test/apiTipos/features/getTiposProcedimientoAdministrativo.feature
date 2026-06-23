@@ -47,3 +47,14 @@ Feature: Pruebas realizadas a la API "GET" - "/tipo/tipos-procedimiento-administ
       |              999999 |    400 | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       |             -999999 |    400 | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
       | 9223372036854775808 |    400 | ERROR_400_Bad_Request | "message"   | "Petición no válida."  |
+
+@GetTiposProcedimientoAdministrativo_EntidadToken
+Scenario: Obtener procedimientos administrativos usando token (v3.5 correcto)
+
+  Given que solicito un token de acceso con el usuario "CLIENT_ID_PDI" y el password "CLIENT_SECRET_PDI"
+
+  And que realizo una petición "GET" a "/tipo/tipos-procedimiento-administrativo/entidad-token" con token "válido"
+
+  Then el estado de la respuesta debe ser 200
+
+
