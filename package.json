@@ -36,10 +36,15 @@
     "notificacion_dependientes": "npx cucumber-js --profile api --tags @Notificacion_Dependientes",
     "notificacion_report": "npm run notificacion && npm run api-report",
     "probe:test-recepcion": "node scripts/probe-test-recepcion.mjs",
+    "probe:test-recepcion-e2e": "node scripts/probe-test-recepcion-e2e.mjs",
     "get-token": "node scripts/get-token.mjs",
     "test_recepcion": "npx cucumber-js --profile api --tags @TestRecepcion",
     "test_recepcion_happy_path": "npx cucumber-js --profile api --tags @TestRecepcion_HappyPath",
-    "test_recepcion_report": "npm run test_recepcion && npm run api-report"
+    "test_recepcion_e2e": "npx cucumber-js --profile api --tags @TestRecepcion_E2E",
+    "test_recepcion_e2e_report": "npm run test_recepcion_e2e && npm run api-report",
+    "test_recepcion_report": "npm run test_recepcion && npm run api-report",
+    "test_recepcion_cierre": "npx cucumber-js --profile api --tags \"@TestRecepcion_OK or @TestRecepcion_E2E\"",
+    "test_recepcion_cierre_report": "npm run test_recepcion_cierre && npm run api-report"
   },
   "keywords": [],
   "author": "",

@@ -61,10 +61,12 @@ CASOS = [
      "Validado en suite (89722–89726 distintos)", "PASS", "Suite Cucumber"),
     ("TC-INT-017", "API / E2E", "Flujo acuse de recibo",
      "POST → GET pendientes → PUT acuse", "Flujo recepción completo",
-     "Pendiente — iteración 2", "Pendiente", "putAcuseRecibo.feature"),
+     "Pendiente ejecución E2E — npm run test_recepcion_e2e", "Pendiente",
+     "postTestRecepcionE2E.feature @TestRecepcion_E2E_Acuse"),
     ("TC-INT-018", "API / E2E", "Flujo rechazo",
      "POST → GET pendientes → PUT rechazo", "Flujo rechazo completo",
-     "Pendiente — iteración 2", "Pendiente", "putAcuseRecibo.feature"),
+     "Pendiente ejecución E2E — npm run test_recepcion_e2e", "Pendiente",
+     "postTestRecepcionE2E.feature @TestRecepcion_E2E_Rechazo"),
 ]
 
 BLOQUEO = [
@@ -144,6 +146,7 @@ def main():
         "Seguridad: token inválido, nulo y expirado — HTTP 401.",
         "Creación individual (un POST genera una comunicación).",
         "Evidencia E2E mediante correos automáticos DocDigital (ids 89721–89726).",
+        "Flujo OP receptora: POST → GET pendientes-recepcion → PUT acuse/rechazo (TC-INT-017/018).",
     ]:
         doc.add_paragraph(item, style="List Bullet")
 
@@ -151,8 +154,7 @@ def main():
     p = doc.add_paragraph()
     p.add_run("Fuera de alcance en esta iteración: ").bold = True
     p.add_run(
-        "TC-INT-010 a 015 (validaciones GET detalle/archivo/trazabilidad) y "
-        "TC-INT-017/018 (E2E acuse/rechazo automatizado)."
+        "TC-INT-010 a 015 (validaciones GET detalle/archivo/trazabilidad)."
     )
 
     add_heading(doc, "3. Ambiente y configuración de prueba", 1)
@@ -166,7 +168,9 @@ def main():
         ("Destinataria", "Entidad del token OAuth"),
         ("Naming QA", "materia: QA Test Recepcion JFC … | folio: QA-REC-JFC-…"),
         ("Framework", "Cucumber + TypeScript + Axios"),
-        ("Comando suite", "npm run test_recepcion_report"),
+        ("Comando suite POST", "npm run test_recepcion_report"),
+        ("Comando suite E2E OP", "npm run test_recepcion_e2e_report"),
+        ("Comando cierre QA-5687", "npm run test_recepcion_cierre_report"),
     ])
 
     add_heading(doc, "4. Historial de bloqueo y destrabe", 1)
