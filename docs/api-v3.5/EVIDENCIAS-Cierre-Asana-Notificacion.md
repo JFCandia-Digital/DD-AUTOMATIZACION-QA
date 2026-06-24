@@ -5,9 +5,10 @@
 **Repositorio:** JFCandia-Digital/DD-AUTOATIZACION-QA  
 **Ambiente:** QA — `https://middleware.docv3.test.digital.gob.cl/api/v3`  
 **Token:** PDI (`CLIENT_ID_PDI` / `CLIENT_SECRET_PDI`)  
-**Ejecutor:** Juan Candia — QA Automatizador  
-**Fecha evidencia:** 23-06-2026  
-**Ejecución suite completa:** `npm run notificacion_report` — **11 scenarios (11 passed)** | 97 steps | ~14 s  
+**Ejecutor:** Juan Francisco Candia (JFC) — QA Automatizador  
+**Fecha evidencia final:** 23-06-2026 ~13:54  
+**Ejecución suite completa:** `npm run notificacion_report` — **11 scenarios (11 passed)** | reporte `reports/index.html`  
+**Naming QA:** materia `QA Notificacion JFC …` | folio `QA-NOTI-JFC-…`
 
 ---
 
@@ -48,7 +49,7 @@ Automatizar y validar el endpoint de notificación según Manual de Integración
 
 | # | Requisito Asana / Manual v3.5 | Escenario Cucumber | Tag | Archivo feature | Resultado | Evidencia |
 |---|------------------------------|-------------------|-----|-----------------|-----------|-----------|
-| 1 | Despacho exitoso con firma válida → 200 + `result.id` | Despachar notificación con documento firmado y datos PA válidos | `@Notificacion_HappyPath` | `postNotificacion.feature` | **PASS** | id **89685** (23-06-2026 10:38:08) |
+| 1 | Despacho exitoso con firma válida → 200 + `result.id` | Despachar notificación con documento firmado y datos PA válidos | `@Notificacion_HappyPath` | `postNotificacion.feature` | **PASS** | id **89703** (23-06-2026 13:54:08) — correo DocDigital |
 | 2 | Documento sin firma → 400, `errorCode` 4001 | Validar rechazo de notificación con documento principal sin firma digital | `@Notificacion_SinFirma` | `postNotificacion.feature` | **PASS** | Mensaje firma externa obligatoria |
 | 3 | Sin destinatarios → 400, `errorCode` 40000 | Validar campos obligatorios PA (sin destinatarios) | `@Notificacion_CamposPA` | `postNotificacion.feature` | **PASS** | `"Se requiere al menos una entidad destinataria"` |
 | 4 | Sin `configuracionDestinatarios` → 40000 | Validar campos obligatorios PA (sin configuración) | `@Notificacion_CamposPA` | `postNotificacion.feature` | **PASS** | `"configuracionDestinatarios es obligatorio"` |
@@ -56,12 +57,13 @@ Automatizar y validar el endpoint de notificación según Manual de Integración
 | 6 | Sin RUN → 40000 | Validar campos obligatorios PA (sin RUN) | `@Notificacion_CamposPA` | `postNotificacion.feature` | **PASS** | `"RUN del usuario es obligatorio"` |
 | 7 | Sin DV → 40000 | Validar campos obligatorios PA (sin DV) | `@Notificacion_CamposPA` | `postNotificacion.feature` | **PASS** | `"Digito verificador del RUN es obligatorio"` |
 | 8 | Sin `tipoProcedimientoAdministrativo` → 40000 | Validar campos obligatorios PA (sin tipo PA) | `@Notificacion_CamposPA` | `postNotificacion.feature` | **PASS** | `"tipoProcedimientoAdministrativo es obligatorio"` |
-| 9 | Dependiente en copia permitido → 200 | Despachar notificación con entidad dependiente como destinatario en copia | `@Notificacion_Dependientes` | `postNotificacion.feature` | **PASS** | id **89687** (23-06-2026 10:38:15) |
-| 10 | Dependiente como principal (regla negocio) | Despachar notificación con entidad dependiente de la despachadora como destinatario principal | `@Notificacion_Dependientes` | `postNotificacion.feature` | **PASS** | id **89688** (23-06-2026 10:38:17) — API QA **acepta** 200 (ver hallazgo #1) |
-| 11 | Destinatario no válido / no dependiente | Validar rechazo con destinatario no dependiente de la entidad despachadora | `@Notificacion_Dependientes` | `postNotificacion.feature` | **PASS** | 400 / `errorCode` **4001** (validación firma alcanzada antes que regla dependiente) |
+| 9 | Dependiente en copia permitido → 200 | Despachar notificación con entidad dependiente como destinatario en copia | `@Notificacion_Dependientes` | `postNotificacion.feature` | **PASS** | 200 — id en reporte 13:54; correo **89705** |
+| 10 | Dependiente como principal (regla negocio) | Despachar notificación con entidad dependiente de la despachadora como destinatario principal | `@Notificacion_Dependientes` | `postNotificacion.feature` | **PASS** | 200 — API QA **acepta** (hallazgo H-01) |
+| 11 | Destinatario no válido / no dependiente | Validar rechazo con destinatario no dependiente de la entidad despachadora | `@Notificacion_Dependientes` | `postNotificacion.feature` | **PASS** | 400 / `errorCode` **4001** (hallazgo H-02) |
 
 **Total escenarios `@Notificacion`:** 11  
-**Estado suite completa (23-06-2026 10:38):** `11 scenarios (11 passed)` — 97 steps — reporte en `reports/index.html`  
+**Estado suite final (23-06-2026 13:54:23):** `11 scenarios (11 passed)` — reporte `reports/index.html`  
+**Correos DocDigital recibidos:** **89703**, **89705** (materia `QA Notificacion JFC`, folio `QA-NOTI-JFC-…`)
 
 ---
 
@@ -91,7 +93,28 @@ npm run notificacion_dependientes
 
 ---
 
-## 5. Reportes HTML (adjuntar a Asana)
+## 5. Paquete de adjuntos para Asana (checklist)
+
+| # | Archivo / captura | Dónde obtenerlo | ¿Listo? |
+|---|-------------------|-----------------|---------|
+| 1 | **Matriz Excel** | `docs/api-v3.5/matriz_api_notificacion_DocDigital.xlsx` | ✅ en repo |
+| 2 | **Documento Word evidencias** | `docs/api-v3.5/Documento_Evidencias_Pruebas_Notificacion.docx` | ✅ en repo |
+| 3 | **Reporte Cucumber PDF** | Abrir `reports/index.html` → Ctrl+P → Guardar como PDF | ⬜ tú |
+| 4 | **Captura reporte 11/11** | Screenshot dashboard oscuro (11 passed) | ✅ si ya la tienes |
+| 5 | **Captura terminal** | `11 scenarios (11 passed)` al correr `npm run notificacion_report` | ⬜ opcional |
+| 6 | **Correo id 89703** | Gmail — `QA Notificacion JFC 23-06-2026 13-54-08` | ✅ |
+| 7 | **Correo id 89705** | Gmail — `QA Notificacion JFC 23-06-2026 13-54-17` | ✅ |
+| 8 | **Este resumen** | `docs/api-v3.5/EVIDENCIAS-Cierre-Asana-Notificacion.md` | ✅ |
+
+### Exportar reporte a PDF
+
+1. Ejecutar (si quieres reporte fresco): `npm run notificacion_report`
+2. Abrir `reports/index.html` en Chrome
+3. **Ctrl+P** → Destino: **Guardar como PDF** → Orientación horizontal → Guardar
+
+---
+
+## 6. Reportes HTML (rutas)
 
 Tras `npm run notificacion` y `npm run api-report`:
 
@@ -131,23 +154,29 @@ Adjuntar a la tarjeta Asana:
 ## 8. Texto sugerido — Comentario de cierre en Asana
 
 ```
-✅ Cierre QA Automatización — POST /comunicaciones/despachar-tipo-notificacion
+✅ CIERRE QA — POST /comunicaciones/despachar-tipo-notificacion (API MW v3.5)
 
-Se implementó y ejecutó la suite @Notificacion en DD-AUTOMATIZACION-QA.
+Ejecutor: Juan Francisco Candia (JFC)
+Fecha: 23-06-2026
 
-Ejecución final: npm run notificacion_report
-Resultado: 11 scenarios (11 passed) | 97 steps | ~14 s
-Reporte: reports/index.html
+Ejecución: npm run notificacion_report
+Resultado: 11 scenarios (11 passed) | reporte reports/index.html (13:54:23)
 
-Cobertura:
-• Happy path 200 + result.id → comunicación 89685
+Cobertura automatizada:
+• Happy path 200 + result.id → comunicación 89703
 • Rechazo sin firma → 400 / errorCode 4001
 • 6 validaciones campos PA obligatorios → 400 / errorCode 40000
-• Dependiente en copia (4758) → 200 / id 89687
-• Dependiente como principal (4758) → 200 / id 89688 (hallazgo H-01: API QA acepta; confirmar con negocio)
-• Destinatario no dependiente → 400 / errorCode 4001
+• Dependiente en copia (4758) → 200
+• Dependiente como principal (4758) → 200 (hallazgo H-01)
+• Destinatario no dependiente → 400 / errorCode 4001 (hallazgo H-02)
 
-Evidencia: docs/api-v3.5/EVIDENCIAS-Cierre-Asana-Notificacion.md
+Evidencia E2E correo DocDigital:
+• 89703 — QA Notificacion JFC — folio QA-NOTI-JFC-23-06-2026 13-54-08
+• 89705 — QA Notificacion JFC — folio QA-NOTI-JFC-23-06-2026 13-54-17
+
+Adjuntos: matriz Excel, documento Word, reporte PDF, capturas correo.
+Código: rama main — DD-AUTOMATIZACION-QA
+
 Ambiente: middleware QA v3 | Token PDI | Despachadora 598 | Dependiente 4758
 ```
 
@@ -155,10 +184,11 @@ Ambiente: middleware QA v3 | Token PDI | Despachadora 598 | Dependiente 4758
 
 ## 9. Checklist cierre QA Automatizador
 
-- [ ] Código integrado en repositorio DD-AUTOMATIZACION-QA
-- [x] `npm run notificacion_report` → 11/11 passed (23-06-2026)
-- [x] `npm run api-report` → reporte HTML generado (`reports/index.html`)
-- [ ] Adjuntar reporte + captura terminal en Asana
-- [ ] Registrar hallazgo H-01 si aplica seguimiento backend
-- [ ] Código en rama `main` del repositorio
-- [ ] Mover tarjeta Asana a **Done** / estado acordado por el equipo
+- [x] Código integrado en repositorio DD-AUTOMATIZACION-QA (rama `main`)
+- [x] `npm run notificacion_report` → 11/11 passed (23-06-2026 13:54)
+- [x] Reporte HTML generado (`reports/index.html`)
+- [x] Correos DocDigital 89703 y 89705 (JFC)
+- [ ] Adjuntar matriz Excel + Word + PDF reporte en Asana
+- [ ] Pegar comentario de cierre (sección 8)
+- [ ] Registrar hallazgos H-01 y H-02 si el equipo lo pide
+- [ ] Mover tarjeta Asana a **Done** / estado acordado

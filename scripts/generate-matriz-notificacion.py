@@ -25,7 +25,7 @@ HEADERS = [
 ]
 
 AMBIENTE = "QA - API v3.5"
-EJECUTOR = "Juan Candia"
+EJECUTOR = "Juan Francisco Candia"
 FECHA = "23-06-2026"
 BASE_PRECOND = "VPN conectada, token PDI válido (CLIENT_ID_PDI), endpoint disponible, .env.api configurado"
 
@@ -38,7 +38,7 @@ ROWS = [
         f"{BASE_PRECOND}; entidad despachadora 598; destinatario 156; PDF 2_FIRMANTES_EN_DOC_DIGITAL.pdf",
         "POST /comunicaciones/despachar-tipo-notificacion (multipart) | Body: JSON_NOTIFICACION_HAPPY_PATH | Adjuntar PDF firmado | Validar status 200 | Validar result.id y result.fechaDespacho",
         "200 OK, comunicación creada con result.id y fechaDespacho actual",
-        "200 OK — id 89685, fechaDespacho 23-06-2026 10:38:08",
+        "200 OK — id 89703, fechaDespacho 23-06-2026 13:54:08; correo DocDigital 89703",
         "PASS",
         AMBIENTE,
         "reports/index.html; cucumber @Notificacion_HappyPath; correo DocDigital id 89685",
