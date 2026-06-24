@@ -34,7 +34,8 @@
     "notificacion_sin_firma": "npx cucumber-js --profile api --tags @Notificacion_SinFirma",
     "notificacion_happy_path": "npx cucumber-js --profile api --tags @Notificacion_HappyPath",
     "notificacion_dependientes": "npx cucumber-js --profile api --tags @Notificacion_Dependientes",
-    "notificacion_report": "npm run notificacion && npm run api-report"
+    "notificacion_report": "npm run notificacion && npm run api-report",
+    "probe:test-recepcion": "node scripts/probe-test-recepcion.mjs"
   },
   "keywords": [],
   "author": "",
