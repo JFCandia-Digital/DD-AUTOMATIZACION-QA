@@ -29,4 +29,16 @@ NOTIFICACION_DESTINATARIO_NO_DEPENDIENTE_ID=598
 
 # Iniciales en materia/folio de notificación (default: JFC)
 # NOTIFICACION_QA_INICIALES=JFC
+
+# Test recepción integración (QA-5687) — opcional, default JFC
+# TEST_RECEPCION_QA_INICIALES=JFC
+```
+
+## Scripts test-recepcion (QA-5687)
+
+```bash
+npm run test_recepcion              # suite @TestRecepcion
+npm run test_recepcion_happy_path   # solo happy path
+npm run test_recepcion_report       # suite + reporte HTML
+npm run probe:test-recepcion        # prueba rápida POST (sin Cucumber)
 ```

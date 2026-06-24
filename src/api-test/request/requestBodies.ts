@@ -253,6 +253,50 @@ const JSON_NOTIFICACION_DESTINATARIO_NO_DEPENDIENTE = crearVarianteValor(
   NOTIFICACION_DESTINATARIO_NO_DEPENDIENTE_ID
 );
 
+// =============================================================================
+// TEST RECEPCIÓN INTEGRACIÓN — POST /pruebas-integracion/comunicaciones/test-recepcion
+// =============================================================================
+
+const JSON_TEST_RECEPCION_VALIDO = {
+  "materia": "AUT-materia-TEST-RECEPCION",
+  "folio": "FOLIO-TEST-RECEPCION-BASE",
+  "isReservado": false,
+  "incorporaAnexos": false,
+  "asociarProcedimientoAdministrativo": false
+};
+
+const JSON_TEST_RECEPCION_CON_ANEXOS = {
+  ...JSON_TEST_RECEPCION_VALIDO,
+  "incorporaAnexos": true
+};
+
+const JSON_TEST_RECEPCION_RESERVADO = {
+  ...JSON_TEST_RECEPCION_VALIDO,
+  "isReservado": true
+};
+
+const JSON_TEST_RECEPCION_CON_PA = {
+  ...JSON_TEST_RECEPCION_VALIDO,
+  "asociarProcedimientoAdministrativo": true
+};
+
+const JSON_TEST_RECEPCION_FLAGS_COMBINADOS = {
+  ...JSON_TEST_RECEPCION_VALIDO,
+  "isReservado": true,
+  "incorporaAnexos": true,
+  "asociarProcedimientoAdministrativo": true
+};
+
+const JSON_TEST_RECEPCION_SIN_MATERIA = crearVarianteSinCampo(
+  JSON_TEST_RECEPCION_VALIDO,
+  'materia'
+);
+
+const JSON_TEST_RECEPCION_SIN_FOLIO = crearVarianteSinCampo(
+  JSON_TEST_RECEPCION_VALIDO,
+  'folio'
+);
+
 // Variante con fechaHoraRecepcion > fechaHoraDespachoExterno (más reciente)
 const JSON_MINIMO_VALIDO_RI_RECEPCION_MAYOR = {
   ...JSON_MINIMO_VALIDO_RI,
@@ -1471,4 +1515,14 @@ export const comunicacionRequest = {
   "JSON_RUN_INTEGER_A_ARRAY_CON_DATO": JSON_RUN_INTEGER_A_ARRAY_CON_DATO,
   "JSON_RUN_INTEGER_A_OBJECT": JSON_RUN_INTEGER_A_OBJECT,
   "JSON_RUN_INTEGER_A_OBJECT_CON_DATO": JSON_RUN_INTEGER_A_OBJECT_CON_DATO,
+};
+
+export const testRecepcionRequest = {
+  "JSON_TEST_RECEPCION_VALIDO": JSON_TEST_RECEPCION_VALIDO,
+  "JSON_TEST_RECEPCION_CON_ANEXOS": JSON_TEST_RECEPCION_CON_ANEXOS,
+  "JSON_TEST_RECEPCION_RESERVADO": JSON_TEST_RECEPCION_RESERVADO,
+  "JSON_TEST_RECEPCION_CON_PA": JSON_TEST_RECEPCION_CON_PA,
+  "JSON_TEST_RECEPCION_FLAGS_COMBINADOS": JSON_TEST_RECEPCION_FLAGS_COMBINADOS,
+  "JSON_TEST_RECEPCION_SIN_MATERIA": JSON_TEST_RECEPCION_SIN_MATERIA,
+  "JSON_TEST_RECEPCION_SIN_FOLIO": JSON_TEST_RECEPCION_SIN_FOLIO,
 };
