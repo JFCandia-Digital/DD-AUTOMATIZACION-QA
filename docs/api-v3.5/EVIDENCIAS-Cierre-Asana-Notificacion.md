@@ -2,7 +2,7 @@
 ## Endpoint `POST /comunicaciones/despachar-tipo-notificacion` (API MW v3.5)
 
 **Proyecto:** DD-AUTOMATIZACION-QA  
-**Repositorio:** JFCandia-Digital/DD-AUTOATIZACION-QA  
+**Repositorio:** JFCandia-Digital/DD-AUTOMATIZACION-QA  
 **Ambiente:** QA — `https://middleware.docv3.test.digital.gob.cl/api/v3`  
 **Token:** PDI (`CLIENT_ID_PDI` / `CLIENT_SECRET_PDI`)  
 **Ejecutor:** Juan Francisco Candia (JFC) — QA Automatizador  

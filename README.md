@@ -1,6 +1,10 @@
 
 
 # Framework de Automatización de API (Doc. Digital)
+
+**Repositorio canónico:** [JFCandia-Digital/DD-AUTOMATIZACION-QA](https://github.com/JFCandia-Digital/DD-AUTOMATIZACION-QA)  
+*(Nombre corregido; antes existía typo `DD-AUTOATIZACION-QA`. GitHub redirige la URL antigua tras el rename.)*
+
 Este framework está diseñado para la ejecución de pruebas de API de punta a punta (E2E), funcionales y de validación de datos para el proyecto Doc. Digital. Utiliza Cucumber para la definición de escenarios (BDD) y Axios/Playwright para la ejecución de peticiones HTTP y aserciones.
 
 ## ⚙️ Tecnologías Principales

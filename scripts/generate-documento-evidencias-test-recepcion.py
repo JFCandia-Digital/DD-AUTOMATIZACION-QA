@@ -126,7 +126,7 @@ def main():
         ("Versión API", "Middleware v3.5"),
         ("Fecha de ejecución", "24 de junio de 2026"),
         ("Ejecutado por", "Juan Francisco Candia (JFC) — QA Automatizador"),
-        ("Repositorio", "JFCandia-Digital/DD-AUTOATIZACION-QA (rama main)"),
+        ("Repositorio", "JFCandia-Digital/DD-AUTOMATIZACION-QA (rama main)"),
         ("Resultado global", "11 casos PASS automatizados | Cucumber: 12 scenarios (12 passed)"),
     ])
 
