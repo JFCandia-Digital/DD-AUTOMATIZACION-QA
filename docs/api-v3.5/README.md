@@ -1,5 +1,10 @@
 # Manual API Middleware DocDigital v3.5
 
+## Documentación relacionada
+
+- [Pruebas Nodo PISEE ↔ DocDigital v3.5](README-Pruebas-Nodo-PISEE.md) — guía paso a paso CMD + evidencias integración nodo
+- `Manual de configuración Nodo v2 - PISEE 2 [público] (1) (2).pdf`
+
 Colocar aquí el documento de integración:
 
 `DocDigital V3_ MANUAL DE INTEGRACIÓN API MW V 3.5.docx`
